@@ -1,0 +1,38 @@
+﻿@page "/databinding"
+
+<h1>Data Binding</h1>
+
+<p>Text Box:</p>
+<input type="text" @bind-value="TextBox" @bind-value:event="oninput" />
+<p>Value Text Box: @TextBox</p>
+
+<hr />
+
+<p>Check Box:</p>
+<input type="checkbox" @bind-value="CheckBox" @bind-value:event="oninput" />
+<p>Value Text Box: @CheckBox</p>
+
+<hr />
+
+<p>Radio:</p>
+<input type="radio" value="1" name="radioGroup" checked="@(Radio == 1)" @onclick="@(() => Radio = 1)" />1
+<input type="radio" value="2" name="radioGroup" checked="@(Radio == 2)" @onclick="@(() => Radio = 2)"/>2
+<p>Value Radio: @Radio</p>
+
+<hr />
+
+<p>Dropdown</p>
+<select @bind="SelectedSelect">
+    <option value="0">Selectione uma opção</option>
+    <option value="1">Opção 1</option>
+    <option value="2">Opção 2</option>
+    <option value="3">Opção 3</option>
+</select>
+<p>Value Dropdown: @SelectedSelect</p>
+
+@code {
+    public string TextBox { get; set; }
+    public bool CheckBox { get; set; }
+    public int Radio { get; set; }
+    public int SelectedSelect { get; set; } = 0;
+}

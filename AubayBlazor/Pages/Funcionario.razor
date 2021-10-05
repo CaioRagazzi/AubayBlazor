@@ -1,0 +1,8 @@
+﻿@page "/funcionario/{id:int}"
+
+<TitleComponent TitleText=@($"Funcionário {Id}")></TitleComponent>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+}

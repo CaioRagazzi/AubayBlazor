@@ -1,0 +1,38 @@
+﻿@page "/components"
+
+<TitleComponent TitleText="Título por parâmetro"></TitleComponent>
+
+<TitleComponent TitleText="Outro título por parâmetro"></TitleComponent>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Region</th>
+    </tr>
+    @foreach (var func in Funcionarios)
+    {
+        <tr>
+            <td><a href="@($"/funcionario/{func.Id}")">@func.Name</a></td>
+            <td>@func.Region</td>
+        </tr>
+    }
+</table>
+
+@code {
+    public List<Funcionario> Funcionarios { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Funcionarios = new List<Funcionario>();
+        Funcionarios.Add(new Funcionario { Id = 1, Name = "Caio", Region = "Porto" });
+        Funcionarios.Add(new Funcionario { Id = 2, Name = "Carlos", Region = "Lisboa" });
+        base.OnInitialized();
+    }
+
+    public class Funcionario
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
+    }
+}
