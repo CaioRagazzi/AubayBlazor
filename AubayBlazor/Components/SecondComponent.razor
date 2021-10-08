@@ -1,6 +1,35 @@
-﻿<h1 style="color:@Color">Second Component</h1>
+﻿@if (toggle)
+{
+    <h1 style="color:@Color">Second Component</h1>
+
+    <button @onclick="InformMessage">EventCallBack Add</button>
+    <button @onclick="DeleteMessages">EventCallBack Clear</button>
+}
 
 @code {
     [CascadingParameter(Name = "Color")]
     public string Color { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ShowMessage { get; set; }
+
+    [Parameter]
+    public EventCallback<string> CleanMessages { get; set; }
+
+    private bool toggle { get; set; }
+
+    private void InformMessage()
+    {
+        ShowMessage.InvokeAsync("Child button clicked!!!");
+    }
+
+    private void DeleteMessages()
+    {
+        CleanMessages.InvokeAsync();
+    }
+
+    public void ToggleButtons()
+    {
+        toggle = !toggle;
+    }
 }

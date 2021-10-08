@@ -1,8 +1,32 @@
 ﻿<div style="border: dashed;">
     <h1>First Component</h1>
-    <SecondComponent></SecondComponent>
+
+    <button @onclick="ToggleButton">Toggle</button>
+
+    <SecondComponent @ref="secondComponent" ShowMessage="ShowMessageParent" CleanMessages="DeleteMessages"></SecondComponent>
+
+    @foreach (var item in messages)
+    {
+        <p>@item</p>
+    }
 </div>
 
 @code {
+    private List<string> messages = new List<string>();
+    private SecondComponent secondComponent;
 
+    private void ToggleButton()
+    {
+        secondComponent.ToggleButtons();
+    }
+
+    private void ShowMessageParent(string message)
+    {
+        messages.Add(message);
+    }
+
+    private void DeleteMessages()
+    {
+        messages.Clear();
+    }
 }
